@@ -36,7 +36,8 @@ public class GameManager : MonoBehaviour {
         {
             if (dt == 0 || spawnControl == true)
             {
-                displayed = (GameObject)GameObject.Instantiate(trial[(int)Random.Range(0, 5)], new Vector3(0, 0, 5), Quaternion.identity);
+                displayed = (GameObject)GameObject.Instantiate(trial[(int)Random.Range(0, 5)], new Vector3(0, 1, 2), Quaternion.identity);
+                displayed.transform.Rotate(new Vector3(-45, 0, 45));
                 spawnControl = false;
             }
             else if (dt > 2)
