@@ -13,6 +13,7 @@ public class KillButton : MonoBehaviour {
 	
 	}
 
+    // when called, delete the object this is attached to
     public void SelfDestruct()
     {
         Destroy(this.gameObject);

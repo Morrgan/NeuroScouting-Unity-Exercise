@@ -12,6 +12,7 @@ public class SelfDestruct : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        // destroy the ibject after it has existed for 2 or more seconds
 	    if(deltaTime > 2)
         {
             

@@ -13,8 +13,21 @@ public class SceneChange : MonoBehaviour {
 	
 	}
 
+    // change to the 1 trial scene
     public void ChangeScene()
     { 
         Application.LoadLevel("MainScene");
+    }
+
+    // change to the 5 trial scene
+    public void ChangeSceneFive()
+    {
+        Application.LoadLevel("FiveScene");
+    }
+
+    // change to the 10 trial scene
+    public void ChangeSceneTen()
+    {
+        Application.LoadLevel("TenScene");
     }
 }
