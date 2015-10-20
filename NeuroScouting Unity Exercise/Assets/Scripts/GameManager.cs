@@ -13,9 +13,12 @@ public class GameManager : MonoBehaviour {
     public GameObject AltFrisbee;
     bool delay = false;
     bool spawnControl = true;
+    bool justPressed = false;
     GameObject displayed = null;
     public GameObject[] trial;
-
+    public GUIText scoreText;
+    public int score;
+    int rand = -1;
 
     // Use this for initialization
     void Start () {
@@ -32,11 +35,17 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        RunTrial();
+    }
+
+    void RunTrial()
+    {
         if (delay == false)
         {
+            rand = (int)Random.Range(0, 5);
             if (dt == 0 || spawnControl == true)
             {
-                displayed = (GameObject)GameObject.Instantiate(trial[(int)Random.Range(0, 5)], new Vector3(0, 1, 2), Quaternion.identity);
+                displayed = (GameObject)GameObject.Instantiate(trial[rand], new Vector3(0, 1, 2), Quaternion.identity);
                 displayed.transform.Rotate(new Vector3(-45, 0, 45));
                 spawnControl = false;
             }
@@ -54,8 +63,33 @@ public class GameManager : MonoBehaviour {
                 dt = 0;
                 delay = false;
                 spawnControl = true;
+                justPressed = false;
+            }
+        }
+        if(Input.GetKeyDown("space"))
+        {
+            GameObject[] target = GameObject.FindGameObjectsWithTag("Target");
+            if(target.Length == 0 && justPressed == false)
+            {
+                score -= 100;
+                justPressed = true;
+            }
+            else if(justPressed == false)
+            {
+                score += (int)(2f / dt * 100);
+                justPressed = true;
             }
         }
         dt += Time.deltaTime;
+        UpdateScore();
+    }
+
+    void UpdateScore()
+    {
+        if (score < 0)
+        {
+            score = 0;
+        }
+        scoreText.text = "Score: " + score;
     }
 }
