@@ -14,6 +14,7 @@ public class SelfDestruct : MonoBehaviour {
 	void Update () {
 	    if(deltaTime > 2)
         {
+            
             Destroy(this.gameObject);
         }
         deltaTime += Time.deltaTime;
